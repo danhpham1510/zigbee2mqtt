@@ -323,7 +323,7 @@ function availabilityPayload(state: 'online' | 'offline', settings: Settings): s
 }
 
 function availabilityPayload1(entity: Device | Group, settings: Settings): string {
-    return settings.advanced.legacy_availability_payload ? "device" : JSON.stringify(entity.name);
+    return `{"device":"${entity.name}"}`
 }
 
 const hours = (hours: number): number => 1000 * 60 * 60 * hours;
