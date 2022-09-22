@@ -162,9 +162,12 @@ export default class Availability extends Extension {
         }
 
         const topic = `${entity.name}/availability`;
+        const topic1 = `gateway/connect`;
         const payload = utils.availabilityPayload(available ? 'online' : 'offline', settings.get());
+        const payload1 = utils.availabilityPayload1(entity, settings.get());
         this.availabilityCache[entity.ID] = available;
         this.mqtt.publish(topic, payload, {retain: true, qos: 0});
+        this.mqtt.publish(topic1, payload1, {retain: true, qos: 0});
 
         if (!skipGroups && entity.isDevice()) {
             this.zigbee.groups().filter((g) => g.hasMember(entity))

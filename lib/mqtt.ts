@@ -113,10 +113,17 @@ export default class MQTT {
         this.subscribe(`${settings.get().mqtt.base_topic}/#`);
     }
 
+    
+    // TODO: change this to  Topic: v1/gateway/connect Message: {"device":"Device A"}
     async publishStateOnline(): Promise<void> {
         await this.publish('bridge/state', utils.availabilityPayload('online', settings.get()), {retain: true, qos: 0});
     }
 
+    // async publishStateOnline(): Promise<void> {
+    //     await this.publish('gateway/connect', utils.availabilityPayload('online', settings.get()), {retain: true, qos: 0});
+    // }
+
+    // TODO: Topic: v1/gateway/disconnect Message {"device":"Device A"}
     async disconnect(): Promise<void> {
         clearTimeout(this.connectionTimer);
         await this.publish('bridge/state', utils.availabilityPayload('offline', settings.get()),
@@ -126,6 +133,9 @@ export default class MQTT {
         this.client.end();
     }
 
+    /**
+     * @brief Subscribe to a topic, duhhhhhhhhh
+     */
     subscribe(topic: string): void {
         this.client.subscribe(topic);
     }
@@ -140,7 +150,7 @@ export default class MQTT {
         if (this.republishRetainedTimer && topic == `${settings.get().mqtt.base_topic}/bridge/state`) {
             clearTimeout(this.republishRetainedTimer);
             this.republishRetainedTimer = null;
-        }
+        } 
     }
 
     isConnected(): boolean {
