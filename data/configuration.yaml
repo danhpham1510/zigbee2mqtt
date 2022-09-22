@@ -1,20 +1,48 @@
-# Home Assistant integration (MQTT discovery)
 homeassistant: false
-
-# allow new devices to join
 permit_join: true
-
-# MQTT settings
 mqtt:
-  # MQTT base topic for zigbee2mqtt MQTT messages
   base_topic: zigbee2mqtt
-  # MQTT server URL
-  server: 'mqtt://localhost'
-  # MQTT server authentication, uncomment if required:
-  # user: my_user
-  # password: my_password
-
-# Serial settings
+  server: mqtt://dev.seltec.io:1884
+  user: admin
+  password: Aura2021
 serial:
-  # Location of CC2531 USB sniffer
-  port: /dev/ttyACM0
+  port: COM5
+frontend: true
+availability:
+  active:
+    timeout: 10
+  passive:
+    timeout: 1500
+devices:
+  '0x84fd27fffe89b81c':
+    friendly_name: tempSensor
+  '0x60a423fffeddc629':
+    friendly_name: contactSensor
+  '0x84fd27fffe898381':
+    friendly_name: waterLeakSensor
+  '0x14b457fffe80f5b6':
+    friendly_name: gasSensor
+  '0x60a423fffe0e7cd1':
+    friendly_name: motionSensor
+  '0x0c4314fffe965f27':
+    friendly_name: touchSwitch
+  '0x60a423fffeda6e49':
+    friendly_name: sosButton
+  '0xb4e3f9fffe3949f3':
+    friendly_name: '0xb4e3f9fffe3949f3'
+advanced:
+  log_level: debug
+  channel: 15
+  homeassistant_legacy_entity_attributes: false
+  legacy_api: false
+  legacy_availability_payload: false
+external_converters:
+  - kk_contact.js
+  - kk_waterleak.js
+  - kk_gas.js
+  - kk_touchswitch.js
+  - kk_motion.js
+  - kk_tempsensor.js
+  - kk_sos.js
+device_options:
+  legacy: false
