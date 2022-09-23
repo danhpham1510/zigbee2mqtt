@@ -216,7 +216,7 @@ class Controller {
         await this.stop();
     }
 
-    @bind async publishEntityState(entity: Group | Device, payload: KeyValue,
+    @bind async  publishEntityState(entity: Group | Device, payload: KeyValue,
         stateChangeReason?: StateChangeReason): Promise<void> {
         let message = {...payload};
 
@@ -271,9 +271,21 @@ class Controller {
         if (Object.entries(message).length) {
             const output = settings.get().advanced.output;
             if (output === 'attribute_and_json' || output === 'json') {
-                await this.mqtt.publish(entity.name, stringify(message), options);
-            }
+                // await this.mqtt.publish(entity.name, stringify(message), options);
+                //await this.mqtt.publish('gateway/telemetry', stringify(message), options);
+                const now = Date.now();
+       
+                var val =`{
+                    "${entity.name}": [
+                    {
+                        "ts" : ${now},
+                        "values": ${stringify(message)}
+                    }
+                ]}`
 
+                
+                await this.mqtt.publish('gateway/telemetry', val, options);
+            }
             if (output === 'attribute_and_json' || output === 'attribute') {
                 await this.iteratePayloadAttributeOutput(`${entity.name}/`, message, options);
             }
