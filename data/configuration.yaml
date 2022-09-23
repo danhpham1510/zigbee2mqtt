@@ -10,9 +10,9 @@ serial:
 frontend: true
 availability:
   active:
-    timeout: 10
+    timeout: 1
   passive:
-    timeout: 1500
+    timeout: 1
 devices:
   '0x84fd27fffe89b81c':
     friendly_name: tempSensor

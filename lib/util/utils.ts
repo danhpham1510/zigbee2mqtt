@@ -322,7 +322,7 @@ function availabilityPayload(state: 'online' | 'offline', settings: Settings): s
     return settings.advanced.legacy_availability_payload ? state : JSON.stringify({state});
 }
 
-function availabilityPayload1(entity: Device | Group, settings: Settings): string {
+function availabilityPayloadThingsboard(entity: Device | Group, settings: Settings): string {
     return `{"device":"${entity.name}"}`
 }
 
@@ -360,6 +360,6 @@ export default {
     equalsPartial, getObjectProperty, getResponse, parseJSON, loadModuleFromText, loadModuleFromFile,
     getExternalConvertersDefinitions, removeNullPropertiesFromObject, toNetworkAddressHex, toSnakeCase,
     parseEntityID, isEndpoint, isZHGroup, hours, minutes, seconds, validateFriendlyName, sleep,
-    sanitizeImageParameter, isAvailabilityEnabledForEntity, publishLastSeen, availabilityPayload,availabilityPayload1,
+    sanitizeImageParameter, isAvailabilityEnabledForEntity, publishLastSeen, availabilityPayload,availabilityPayloadThingsboard,
     getAllFiles, filterProperties,
 };
