@@ -271,10 +271,9 @@ class Controller {
         if (Object.entries(message).length) {
             const output = settings.get().advanced.output;
             if (output === 'attribute_and_json' || output === 'json') {
-                // await this.mqtt.publish(entity.name, stringify(message), options);
-                //await this.mqtt.publish('gateway/telemetry', stringify(message), options);
+                await this.mqtt.publish(entity.name, stringify(message), options);
+                //Thingsboard telemetry
                 const now = Date.now();
-       
                 var val =`{
                     "${entity.name}": [
                     {
