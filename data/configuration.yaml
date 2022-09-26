@@ -2,17 +2,17 @@ homeassistant: false
 permit_join: false
 mqtt:
   base_topic: v1
-  server: mqtt://dev.seltec.io:1884
-  user: admin
-  password: Aura2021
+  server: mqtt://dev.seltec.io:29889
+  user: myhub
+  password: Seltec2020
 serial:
   port: COM5
 frontend: true
 availability:
   active:
-    timeout: 1
+    timeout: 5
   passive:
-    timeout: 1
+    timeout: 5
 devices:
   '0x84fd27fffe89b81c':
     friendly_name: tempSensor
