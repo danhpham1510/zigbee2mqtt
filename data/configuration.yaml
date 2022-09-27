@@ -1,18 +1,18 @@
 homeassistant: false
-permit_join: true
+permit_join: false
 mqtt:
-  base_topic: zigbee2mqtt
-  server: mqtt://dev.seltec.io:1884
-  user: admin
-  password: Aura2021
+  base_topic: v1
+  server: mqtt://dev.seltec.io:29889
+  user: myhub
+  password: $secret
 serial:
   port: COM5
 frontend: true
 availability:
   active:
-    timeout: 10
+    timeout: 5
   passive:
-    timeout: 1500
+    timeout: 5
 devices:
   '0x84fd27fffe89b81c':
     friendly_name: tempSensor
@@ -30,6 +30,8 @@ devices:
     friendly_name: sosButton
   '0xb4e3f9fffe3949f3':
     friendly_name: '0xb4e3f9fffe3949f3'
+  '0xbc33acfffef4d7fb':
+    friendly_name: '0xbc33acfffef4d7fb'
 advanced:
   log_level: debug
   channel: 15
