@@ -4,7 +4,7 @@ mqtt:
   base_topic: v1
   server: mqtt://dev.seltec.io:29889
   user: myhub
-  password: Seltec2020
+  password: $secret
 serial:
   port: COM5
 frontend: true
